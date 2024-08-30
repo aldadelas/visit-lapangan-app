@@ -1,9 +1,11 @@
 import { FormModel, FormType } from "@/components/form/FormModel";
 import GeneralForm from "@/components/form/GeneralForm";
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { router } from "expo-router";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { styles as GlobalStyle} from '@/components/Style';
 
 export default function LoginScreen() {
-  const loginForm: FormModel[] = [{
+  const forms: FormModel[] = [{
     type: FormType.TEXT,
     placeholder: "Username",
     value: ""
@@ -11,40 +13,53 @@ export default function LoginScreen() {
     type: FormType.PASSWORD,
     placeholder: "Password",
     value: ""
-  }]
+  }];
+
+  const onPressed = () => {
+    router.replace('/(home)')
+  }
+
   return (
-    <View style={styles.flexContainer}>
-      <Text style={styles.titleContainer}>LOGIN</Text>
-      {loginForm.map((form, index) => (
-        <GeneralForm key={"login-form-" + index} type={form.type} placeholder={form.placeholder} value={form.value} />
-      ))}
-      <Button title="Login" />
+    <View style={[GlobalStyle.appContainer, styles.container]}>
+      <View style={[GlobalStyle.cardContainer, styles.cardSize]}>
+        <Text style={styles.titleContainer}>LOGIN</Text>
+        {forms.map((form, index) => (
+          <GeneralForm key={index} formProps={form} />
+        ))}
+        <Pressable style={styles.button} onPress={onPressed}>
+          <Text style={styles.buttonText}>Login</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  flexContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardSize: {
+    width: 350,
+    height: 250,
   },
   titleContainer: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  textInput: {
-    width: 250,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    marginBottom: 16,
-    borderRadius: 5,
-    backgroundColor: '#fff',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   button: {
-    borderWidth: 3,
-    borderColor: '#ccc',
+    width: 'auto',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: '#4B70F5',
+    borderColor: '#4C3BCF',
+    padding: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
   }
 });
