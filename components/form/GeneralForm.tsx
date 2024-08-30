@@ -14,15 +14,15 @@ export default function GeneralForm(props: GeneralFormProps) {
     }
     if (props.formProps.type === FormType.TEXT) {
         return (
-            <TextInput placeholder={props.formProps.placeholder} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
+            <TextInput placeholder={props.formProps.placeholder} placeholderTextColor={'grey'} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
         )
     } else if (props.formProps.type === FormType.TEXTAREA) {
         return (
-            <TextInput multiline={true} placeholder={props.formProps.placeholder} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
+            <TextInput multiline={true} placeholder={props.formProps.placeholder} placeholderTextColor={'grey'} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
         )
     } else if (props.formProps.type === FormType.PASSWORD) {
         return (
-            <TextInput secureTextEntry={true} placeholder={props.formProps.placeholder} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
+            <TextInput secureTextEntry={true} placeholder={props.formProps.placeholder} placeholderTextColor={'grey'} style={styles.textInput} onChangeText={onChangeText} value={inputValue}/>
         )
     }
     

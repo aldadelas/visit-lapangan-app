@@ -1,7 +1,8 @@
 import { FormModel, FormType } from "@/components/form/FormModel";
 import GeneralForm from "@/components/form/GeneralForm";
-import { useState } from "react";
+import { router } from "expo-router";
 import { View, Text, StyleSheet, Pressable } from "react-native";
+import { styles as GlobalStyle} from '@/components/Style';
 
 export default function LoginScreen() {
   const forms: FormModel[] = [{
@@ -15,12 +16,12 @@ export default function LoginScreen() {
   }];
 
   const onPressed = () => {
-    console.log(forms)
+    router.replace('/(home)')
   }
 
   return (
-    <View style={styles.flexContainer}>
-      <View style={styles.cardContainer}>
+    <View style={[GlobalStyle.appContainer, styles.container]}>
+      <View style={[GlobalStyle.cardContainer, styles.cardSize]}>
         <Text style={styles.titleContainer}>LOGIN</Text>
         {forms.map((form, index) => (
           <GeneralForm key={index} formProps={form} />
@@ -34,16 +35,13 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  flexContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  cardContainer: {
+  cardSize: {
     width: 350,
     height: 250,
-    padding: 16,
-    backgroundColor: '#fff',
   },
   titleContainer: {
     fontSize: 32,
